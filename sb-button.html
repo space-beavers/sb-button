@@ -1,0 +1,106 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+<!--
+Standard button
+
+Example:
+
+    <sb-button></sb-button>
+
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="sb-button">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      paper-button {
+        min-width: 110px;
+        font: 12px/16px 'Open Sans',Arial;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      paper-button.primary {
+        background: #fff200;
+        color: #2e3337;
+      }
+
+      paper-button.primary:hover {
+        background: #ffe000;
+      }
+
+      paper-button.secondary {
+        background: #007fd8;
+        color: #fff;
+      }
+
+      paper-button.secondary:hover {
+        background: #003b64;
+      }
+
+      paper-button[disabled],
+      paper-button[toggles][active] {
+
+      }
+    </style>
+    <paper-button raised class$="{{_buttonType}}"><content></paper-button>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'sb-button',
+
+      properties: {
+        /**
+         * Primary call to action type
+         */
+        primary: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * Secondary call to action type
+         */
+        secondary: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * Internal state for selected button type
+         */
+        _buttonType: {
+          type: String,
+          computed: '_computeButtonType(primary, secondary)'
+        }
+      },
+
+      // Element Lifecycle
+
+      ready: function() {
+      },
+
+      // Element Behavior
+      _computeButtonType: function(primary, secondary) {
+        var type = ''; // set to nothing if both false
+
+        if(primary || (primary && secondary)) {
+          type = 'primary';
+        } else if(secondary) {
+          type = 'secondary';
+        }
+
+        return type;
+      }
+
+    });
+  </script>
+</dom-module>
