@@ -2,21 +2,55 @@
 <link rel="import" href="../paper-button/paper-button.html">
 
 <!--
-Standard button
+Material design: [Buttons](https://www.google.com/design/spec/components/buttons.html)
+
+`<sb-button>` is the standard button element that should be used for all call to actions.
+By passing in specific attributes, you can change the type of button that is displayed.
+Currently, we support the following variations of a button:
+### Primary
+ Secondary buttons should be used for the following cases:
+
+### Secondary
+ Secondary buttons should be used for the following cases:
+
+Note: Calling `<sb-button>` without any parameters will render a primary button by default.
+
 
 Example:
 
-    <sb-button></sb-button>
+    <sb-button>Default button</sb-button>
+    <sb-button primary>Primary button</sb-button>
+    <sb-button secondary>Secondary button</sb-button>
 
-@demo demo/index.html
+You may use custom DOM in the button body to create a variety of buttons. For example, to
+create a button with an icon and some text:
+
+    <sb-button secondary>
+      <iron-icon icon="favorite"></iron-icon>
+      custom button content
+    </sb-button>
+
+The following custom properties and mixins are also available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--sb-button-ink-color` | Background color of the ripple | `Based on the button's color`
+`--sb-button` | Mixin applied to the button | `{}`
+`--sb-button-disabled` | Mixin applied to the disabled button. Note that you can also use the `sb-button[disabled]` selector | `{}`
+`--sb-button-flat-keyboard-focus` | Mixin applied to a flat button after it's been focused using the keyboard | `{}`
+`--sb-button-raised-keyboard-focus` | Mixin applied to a raised button after it's been focused using the keyboard | `{}`
+
+@group UI Elements
 @hero hero.svg
+@demo demo/index.html
+@element sb-button
 -->
 
 <dom-module id="sb-button">
   <template>
     <style>
       :host {
-        display: block;
+        display: inline-block;
       }
 
       paper-button {
@@ -89,6 +123,14 @@ Example:
       },
 
       // Element Behavior
+
+      /**
+       * Computes the internal state/type of this button.
+       *
+       * @param {Boolean} if we are a primary type.
+       * @param {Boolean} if we are a secondary button.
+       * @return {String} The css type of this button.
+       */
       _computeButtonType: function(primary, secondary) {
         var type = ''; // set to nothing if both false
 

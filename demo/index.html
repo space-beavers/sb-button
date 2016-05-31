@@ -17,22 +17,20 @@
   <body>
 
     <div class="vertical-section-container centered">
-      <h3>Default sb-button Demo</h3>
+      <h3>Buttons can be styled using custom properties</h3>
       <demo-snippet>
         <template>
           <sb-button>SHOP NOW</sb-button>
+          <sb-button primary>SHOP NOW</sb-button>
+          <sb-button secondary>LEARN MORE</sb-button>
         </template>
       </demo-snippet>
       <h3>Primary sb-button Demo</h3>
       <demo-snippet>
         <template>
-          <sb-button primary>SHOP NOW</sb-button>
-        </template>
-      </demo-snippet>
-      <h3>Secondary sb-button Demo</h3>
-      <demo-snippet>
-        <template>
-          <sb-button secondary>LEARN MORE</sb-button>
+          <a href="http://www.bestbuy.ca" tabindex="-1">
+            <sb-button primary>View BestBuy</sb-button>
+          </a>
         </template>
       </demo-snippet>
     </div>
